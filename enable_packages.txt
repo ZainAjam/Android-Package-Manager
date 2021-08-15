@@ -1,0 +1,43 @@
+#you can customize the packages you want to disable and enable
+#just add the package name as a standalone line anywhere in this file
+#if you don't want to have a package name included, you can delete the package name or put a # at the beginning of the line for it to be ignored
+
+#oneui 3.1 packages
+com.samsung.android.calendar
+com.samsung.android.kidsinstaller
+com.samsung.android.app.settings.bixby
+com.sec.android.daemonapp
+com.samsung.systemui.bixby2
+com.samsung.android.bixby.service
+com.samsung.android.messaging
+com.samsung.android.bixby.agent
+com.samsung.android.app.reminder
+com.sec.android.app.clockpackage
+com.samsung.android.app.routines
+com.samsung.android.authfw
+com.samsung.android.bixbyvision.framework
+com.samsung.android.bixby.wakeup
+com.samsung.android.samsungpass
+com.samsung.android.app.spage
+com.samsung.android.visionintelligence
+com.samsung.android.svoiceime
+com.samsung.android.samsungpassautofill
+com.samsung.android.tapack.authfw
+com.samsung.android.bixby.agent.dummy
+
+#fossil wear os Packages
+com.fossil.elabel
+com.fossil.twm
+com.fossil.wearable.pusher
+com.fossil.wearable.fspropertyutils
+com.fossil.activationanalytic
+com.fossil.oemsetup.triggerfish
+com.fossil.hfpconnector
+com.fossil.wearables.sk
+com.fossil.wearables.healthtracker
+com.fossil.wearos.sensoraccessservice
+com.fossil.phone
+com.fossil.charge.darter
+com.fossil.wearables.savedfaceservice
+com.fossil.wearables.batterysaver
+com.fossil.oemsetup.darter
