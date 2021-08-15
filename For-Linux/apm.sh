@@ -15,6 +15,7 @@
 # Color  Variables
 ##
 
+flash='\e[1;33m'
 red='\e[1;31m'
 green='\e[32m'
 yellow='\e[33m'
@@ -36,6 +37,9 @@ ColorRed(){
 }
 ColorYellow(){
 	echo -ne $yellow$1$clear
+}
+ColorFlash(){
+	echo -ne $flash$1$clear
 }
 
 ##
@@ -273,21 +277,18 @@ System Preparation
 $(ColorGreen ' 1)') Read me
 $(ColorGreen ' 2)') Update linux packages                            -- Skip if system already up to date
 $(ColorGreen ' 3)') Install adb packages                             -- Skip if adb already installed on system
-
 -----------------------------------------------------------------------------------------------
 Connect / Disconnect Devices
 -----------------------------------------------------------------------------------------------
 $(ColorGreen ' 4)') Connect device over wifi                         -- Not required for USB connected devices
 $(ColorGreen ' 5)') Disconnect device over wifi                      -- Not required for USB connected devices
 $(ColorGreen ' 6)') Check mobile devices connected and authorized
-
 -----------------------------------------------------------------------------------------------
 Assess packages
 -----------------------------------------------------------------------------------------------
 $(ColorGreen ' 7)') Check bulk package listing
 $(ColorGreen ' 8)') Check packages currently disabled on device      $(ColorYellow '-- Only works when one device is connected')
 $(ColorGreen ' 9)') Check packages currently enabled on device       $(ColorYellow '-- Only works when one device is connected')
-
 -----------------------------------------------------------------------------------------------
 Disable / Enable packages
 -----------------------------------------------------------------------------------------------
@@ -295,6 +296,15 @@ $(ColorGreen '10)') Disable packages (Bulk disable)                  $(ColorYell
 $(ColorGreen '11)') Enable packages (Bulk enable)                    $(ColorYellow '-- Only works when one device is connected')
 $(ColorGreen '12)') Disable a package                                $(ColorYellow '-- Only works when one device is connected')
 $(ColorGreen '13)') Enable a package                                 $(ColorYellow '-- Only works when one device is connected')
+
+-----------------------------------------------------------------------------------------------
+About the Developer
+-----------------------------------------------------------------------------------------------
+Zain Ajam, born and raised in Port Elizabeth South Africa, is an avid coder, data analyst and
+auditor. This tool was built as a quick way to disable unused and duplicate apps on Android
+devices such as phones, tablets, televisions and watches.
+
+If you like the app, send a $(ColorFlash 'donation to paypal account zain.ajam.za@gmail.com')
 
 $(ColorBlue 'Choose an option:') "
         read a
