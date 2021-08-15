@@ -216,11 +216,16 @@ function disable_packages() {
 	while IFS="" read -r line <&3
 	do
 		if [[ ${line:0:1} != "#" ]] && [[ ${line:0:1} != "" ]]
-	  then
-			sudo adb shell pm disable-user --user 0 "$line"
+		then
+			var=$(adb shell pm path "$line")
+			if [[ $var != "" ]]
+			then
+				sudo adb shell pm disable-user --user 0 "$line"
+			else
+				echo $(ColorYellow 'Skipped. Package not installed on device.') "$line"
+			fi
 		fi
 	done 3< "$file"
-	del tmpFile
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -232,12 +237,18 @@ function enable_packages() {
 	echo
 	echo Enabling packages:
 	echo
-  file="enable_packages.txt"
-	while IFS= read -r line <&3
+	file="enable_packages.txt"
+	while IFS="" read -r line <&3
 	do
 		if [[ ${line:0:1} != "#" ]] && [[ ${line:0:1} != "" ]]
-	  then
-	    sudo adb shell pm enable "$line"
+		then
+			var=$(adb shell pm path "$line")
+			if [[ $var != "" ]]
+			then
+				sudo adb shell pm enable "$line"
+			else
+				echo $(ColorYellow 'Skipped') "$line"
+			fi
 		fi
 	done 3< "$file"
 	echo
