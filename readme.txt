@@ -1,3 +1,8 @@
+Android Package Manager built for linux to:
+* View packages on adb connected devices
+* Allows adb connections through USB or WiFi
+* Enable and disable packages on android devices at bulk or individually
+
 To effectively use this package manager, ensure the following has been done:
 
 1. Enable developer options on your device by tapping build number on your phone 7 times
