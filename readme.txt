@@ -13,4 +13,4 @@ To effectively use this package manager, ensure the following has been done:
 6. Execute the command:
         bash android_package_manager.sh
 
-Note: The packages that you want to disable or enable can be changed by editing the enable_packages.txt and disable_packages.txt files.
+Note: The packages that you want to disable or enable can be changed by editing the enable_packages.txt and disable_packages.txt files. Make sure that the correct packages are listed in the text files before running the bulk actions in the package manager

@@ -220,6 +220,7 @@ function disable_packages() {
 			sudo adb shell pm disable-user --user 0 "$line"
 		fi
 	done 3< "$file"
+	del tmpFile
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
