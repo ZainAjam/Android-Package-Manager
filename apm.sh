@@ -83,7 +83,7 @@ function adb_connect_over_wifi() {
 	echo
   read ip
 	echo
-  adb connect $ip
+  sudo adb connect $ip
 	echo
 	echo You may be prompted to approve debugging on your device. Approve on the device before proceeding here.
 	echo
@@ -95,7 +95,7 @@ function adb_connect_over_wifi() {
 function adb_disconnect_over_wifi() {
 	echo $(ColorRed 'Disconnect from device over WiFi')
 	echo
-	adb devices
+	sudo adb devices
 	echo
   echo "What is the IP address of the android device to want to disconnect? (* to disconnect all; c to cancel)"
 	echo
@@ -106,9 +106,9 @@ function adb_disconnect_over_wifi() {
 		return 0
 	elif [[ ${ip} == "*" ]]
 	then
-	  adb disconnect
+	  sudo adb disconnect
   else
-		adb disconnect $ip
+		sudo adb disconnect $ip
 	fi
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
@@ -119,7 +119,7 @@ function adb_disconnect_over_wifi() {
 function check_mobile_device_auth() {
 	echo $(ColorRed 'Check connected devices')
 	echo
-  adb devices
+  sudo adb devices
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -129,7 +129,7 @@ function check_mobile_device_auth() {
 function check_disabled_packages() {
 	echo $(ColorRed 'Show disabled packages')
 	echo
-  adb shell pm list packages -d
+  sudo adb shell pm list packages -d
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -139,7 +139,7 @@ function check_disabled_packages() {
 function check_enabled_packages() {
 	echo $(ColorRed 'Show enabled packages')
 	echo
-  adb shell pm list packages -e
+  sudo adb shell pm list packages -e
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -187,7 +187,7 @@ function disable_package() {
 	echo Type in the name of the package that you would like to disable:
   echo
 	read package
-	adb shell pm disable-user --user 0 $package
+	sudo adb shell pm disable-user --user 0 $package
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -200,7 +200,7 @@ function enable_package() {
 	echo Type in the name of the package that you would like to enable:
   echo
 	read package
-	adb shell pm enable $package
+	sudo adb shell pm enable $package
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -213,13 +213,13 @@ function disable_packages() {
 	echo Disabling packages:
 	echo
 	file="disable_packages.txt"
-	while IFS= read -r line
+	while IFS="" read -r line <&3
 	do
 		if [[ ${line:0:1} != "#" ]] && [[ ${line:0:1} != "" ]]
 	  then
-			adb shell pm disable-user --user 0 $line
+			sudo adb shell pm disable-user --user 0 "$line"
 		fi
-	done < "$file"
+	done 3< "$file"
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -232,13 +232,13 @@ function enable_packages() {
 	echo Enabling packages:
 	echo
   file="enable_packages.txt"
-	while IFS= read -r line
+	while IFS= read -r line <&3
 	do
 		if [[ ${line:0:1} != "#" ]] && [[ ${line:0:1} != "" ]]
 	  then
-	    adb shell pm enable "$line"
+	    sudo adb shell pm enable "$line"
 		fi
-	done < "$file"
+	done 3< "$file"
 	echo
 	echo $(ColorBlue 'Press ENTER to return to menu')
 	read -p ""
@@ -300,8 +300,8 @@ $(ColorBlue 'Choose an option:') "
 					11) clear; enable_packages ; menu ;;
 					12) clear; disable_package ; menu ;;
 					13) clear; enable_package ; menu ;;
-			0) clear; exit 0 ;;
-			*) echo -e $red"Wrong option."$clear; WrongCommand;;
+					0) clear; exit 0 ;;
+					*) clear ; menu ;;
         esac
 }
 
